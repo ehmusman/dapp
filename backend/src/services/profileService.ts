@@ -1,5 +1,3 @@
-// src/services/DataService.ts
-
 import Data from "../models/Data";
 import { HttpError } from "../utils/HttpError";
 

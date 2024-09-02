@@ -1,13 +1,8 @@
 import { Request, Response } from "express";
 import DataService from "../services/dataService";
 import { asyncHandler } from "../utils/asyncHandler";
-import fs from "fs";
-import { HttpError } from "../utils/HttpError";
-import User from "../models/User";
-import profileService from "../services/profileService";
 
 export const saveData = asyncHandler(async (req: Request, res: Response) => {
-  console.log(req.body);
   const {
     update_id,
     message: {

@@ -1,7 +1,5 @@
 import { Request, Response } from "express";
-import DataService from "../services/dataService";
 import { asyncHandler } from "../utils/asyncHandler";
-import fs from "fs";
 import { HttpError } from "../utils/HttpError";
 import User from "../models/User";
 import profileService from "../services/profileService";

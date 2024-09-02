@@ -1,12 +1,10 @@
-import { Request, Response, NextFunction } from 'express';
-import logger from '../config/logger';
+import { Request, Response, NextFunction } from "express";
+import logger from "../config/logger";
+import { HttpError } from "../utils/HttpError";
 
-import { HttpError } from '../utils/HttpError';
-
-
-const errorHandler = (err: HttpError, req: Request, res: Response, next: NextFunction) => {
+const errorHandler = (err: HttpError, req: Request, res: Response) => {
   const status = err.statusCode || 500;
-  const message = err.message || 'Internal Server Error';
+  const message = err.message || "Internal Server Error";
 
   // Log the error details using Winston
   logger.error({
@@ -18,7 +16,6 @@ const errorHandler = (err: HttpError, req: Request, res: Response, next: NextFun
     ip: req.ip,
   });
 
-  // Respond to the client
   res.status(status).json({
     status,
     message,

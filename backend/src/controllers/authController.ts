@@ -1,10 +1,7 @@
-// src/controllers/authController.ts
-
 import { Request, Response } from "express";
 import { validationResult } from "express-validator";
 import AuthService from "../services/authService";
 import { asyncHandler } from "../utils/asyncHandler";
-import { HttpError } from "../utils/HttpError";
 
 export const register = asyncHandler(async (req: Request, res: Response) => {
   const errors = validationResult(req);

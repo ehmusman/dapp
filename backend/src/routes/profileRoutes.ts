@@ -6,7 +6,6 @@ import { getDataForAuthenticatedUser } from "../controllers/profileController";
 
 const router = Router();
 
-// Use the authenticated route to get data for the logged-in user
 router.get("/profile", authenticate, getDataForAuthenticatedUser);
 
 export default router;

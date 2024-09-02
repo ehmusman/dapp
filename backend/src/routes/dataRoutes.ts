@@ -1,7 +1,5 @@
-// src/routes/dataRoutes.ts
-
-import { Router } from 'express';
-import { saveData } from '../controllers/dataController';
+import { Router } from "express";
+import { saveData } from "../controllers/dataController";
 
 const router = Router();
 
