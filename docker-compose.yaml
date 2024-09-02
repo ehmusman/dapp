@@ -1,0 +1,74 @@
+version: "3.8"
+
+services:
+# Backend Nodejs Service
+  backend:
+    build: ./backend
+    container_name: node-backend
+    ports:
+      - "4000:3000"
+    networks:
+      - backend
+    volumes:
+      - ./backend:/app
+    environment:
+      - DATABASE_URL=${DATABASE_URL}
+      - JWT_SECRET=${JWT_SECRET}
+    depends_on:
+      - db
+      - ngrok
+      - bot-setup
+    env_file:
+      - .env
+# Telegram Bot Webhook Setup service
+  bot-setup:
+    build: ./bot-setup
+    container_name: bot-setup
+    networks:
+      - backend
+    depends_on:
+      - db
+      - ngrok
+    environment:
+      - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
+      - NGROK_TUNNEL=${NGROK_TUNNEL}
+    env_file:
+      - .env
+    restart: on-failure
+
+
+  # Ngrok Service
+  ngrok:
+    image: wernight/ngrok
+    container_name: ngrok
+    environment:
+      - NGROK_AUTH=${NGROK_AUTH}
+      - NGROK_PORT=backend:3000
+    ports:
+      - "4040:4040"
+    networks:
+      - backend
+
+# Postgress DB
+
+  db:
+    image: postgres:14
+    container_name: postgres-db
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_HOST: ${POSTGRES_HOST}
+    ports:
+      - "5555:5432"
+    networks:
+      - backend
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+networks:
+  backend:
+    driver: bridge
+    
+volumes:
+  pgdata:
