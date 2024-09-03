@@ -10,7 +10,7 @@ class DataService {
     first_name: string
   ) {
     if (text) {
-      await Data.create({
+      return Data.create({
         update_id,
         date,
         username,
@@ -19,7 +19,7 @@ class DataService {
         text,
       });
     }
-    return { message: "Data saved successfully" };
+    return new Promise((res) => res)
   }
 }
 

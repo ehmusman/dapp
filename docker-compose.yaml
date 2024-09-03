@@ -1,7 +1,7 @@
 version: "3.8"
 
 services:
-# Backend Nodejs Service
+  # Backend Nodejs Service
   backend:
     build: ./backend
     container_name: node-backend
@@ -20,7 +20,7 @@ services:
       - bot-setup
     env_file:
       - .env
-# Telegram Bot Webhook Setup service
+  # Telegram Bot Webhook Setup service
   bot-setup:
     build: ./bot-setup
     container_name: bot-setup
@@ -36,6 +36,26 @@ services:
       - .env
     restart: on-failure
 
+  # Next.js Service
+  nextjs:
+    build: ./frontend
+    container_name: nextjs-frontend
+    ports:
+      - "3000:3000"
+    networks:
+      - backend
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+    depends_on:
+      - db
+    env_file:
+      - .env
+    command: npm run dev
+    stdin_open: true
+    tty: true
 
   # Ngrok Service
   ngrok:
@@ -49,7 +69,7 @@ services:
     networks:
       - backend
 
-# Postgress DB
+  # Postgress DB
 
   db:
     image: postgres:14
@@ -69,6 +89,6 @@ services:
 networks:
   backend:
     driver: bridge
-    
+
 volumes:
   pgdata:

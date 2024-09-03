@@ -21,7 +21,6 @@ if (config.use_env_variable) {
 }
 
 const modelsPath = path.join(__dirname, "..", "src", "models");
-console.log("modelsPath", modelsPath)
 fs.readdirSync(modelsPath)
   .filter((file) => {
     return file.indexOf(".") !== 0 && file.slice(-3) === ".ts";
