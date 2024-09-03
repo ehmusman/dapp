@@ -1,7 +1,10 @@
 import { initialState } from "./state";
 import { walletActionTypes, WalletActions, WalletStateI } from "./types";
 
-export function reducer(state: WalletStateI, action: WalletActions): WalletStateI {
+export function reducer(
+  state: WalletStateI,
+  action: WalletActions
+): WalletStateI {
   switch (action.type) {
     // ////////////////////////////////////////////////////////////////////////////////////////
     //                                Wallet Connection Reducer
@@ -24,10 +27,10 @@ export function reducer(state: WalletStateI, action: WalletActions): WalletState
         address: action.payload.address,
         balance: action.payload.balance,
       };
-      case walletActionTypes.WALLET_DISCONNECT:
-        return {
-          ...initialState
-        };
+    case walletActionTypes.WALLET_DISCONNECT:
+      return {
+        ...initialState,
+      };
 
     default:
       return state;

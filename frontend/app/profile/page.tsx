@@ -1,12 +1,10 @@
-'use client'
+"use client";
 
-import WithAuth from "../components/WithAuth"
-import Profile from "./Profile"
+import WithAuth from "../components/WithAuth";
+import Profile from "./components/Profile";
 
 const ProfilePage = () => {
-  return (
-    <Profile />
-  )
-}
+  return <Profile />;
+};
 
-export default WithAuth(ProfilePage)
+export default WithAuth(ProfilePage);

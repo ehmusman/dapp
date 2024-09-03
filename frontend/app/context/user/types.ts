@@ -1,3 +1,6 @@
+/**
+ *  Telegram Bot Data Interface
+ */
 export interface TelegramBotData {
   id: number;
   update_id: string;
@@ -8,11 +11,18 @@ export interface TelegramBotData {
   text: string;
   created_at: Date;
 }
+
+/**
+ * User Error Interface
+ */
 export interface UserErrorI {
   status: boolean;
   message: string;
 }
 
+/**
+ * User State Interface
+ */
 export interface UserState {
   isLoading: boolean;
   error: UserErrorI | null;
@@ -22,6 +32,10 @@ export interface UserState {
   created_at: Date | null;
   telegramBotData: TelegramBotData[] | null;
 }
+
+/**
+ * User Action Types
+ */
 export const actionTypes = {
   // Login Action Types
   LOGIN_USER: "LOGIN_USER",
@@ -42,24 +56,28 @@ export const actionTypes = {
   LOGOUT_USER: "LOGOUT_USER",
 
   // Add Socket data
-  ADD_BOT_SOCKET_DATA: "ADD_BOT_SOCKET_DATA"
+  ADD_BOT_SOCKET_DATA: "ADD_BOT_SOCKET_DATA",
 } as const;
 
-
+/**
+ * User Actions
+ */
 export type UserAction =
   | { type: typeof actionTypes.LOGIN_USER; payload: UserState }
   | { type: typeof actionTypes.LOGIN_USER_REQUEST }
   | { type: typeof actionTypes.LOGIN_USER_ERROR; payload: UserErrorI }
-  | { type: typeof actionTypes.SIGNUP_USER}
+  | { type: typeof actionTypes.SIGNUP_USER }
   | { type: typeof actionTypes.SIGNUP_USER_REQUEST }
   | { type: typeof actionTypes.SIGNUP_USER_ERROR; payload: UserErrorI }
   | { type: typeof actionTypes.GET_USER_PROFILE; payload: UserState }
   | { type: typeof actionTypes.GET_USER_PROFILE_REQUEST }
   | { type: typeof actionTypes.GET_USER_PROFILE_ERROR; payload: UserErrorI }
   | { type: typeof actionTypes.LOGOUT_USER }
-  | { type: typeof actionTypes.ADD_BOT_SOCKET_DATA, payload: TelegramBotData}
-  
+  | { type: typeof actionTypes.ADD_BOT_SOCKET_DATA; payload: TelegramBotData };
 
+/**
+ * Error Interface
+ */
 export interface ErrorI {
   message: string;
   status: boolean;

@@ -56,7 +56,9 @@ export function reducer(state: UserState, action: UserAction): UserState {
       return {
         ...state,
         ...action.payload,
-        telegramBotData: action.payload.telegramBotData ? [...action.payload.telegramBotData] : null,
+        telegramBotData: action.payload.telegramBotData
+          ? [...action.payload.telegramBotData]
+          : null,
         isLoading: false,
       };
     case actionTypes.GET_USER_PROFILE_ERROR:
@@ -74,15 +76,17 @@ export function reducer(state: UserState, action: UserAction): UserState {
         ...initialState,
       };
 
-
     // ////////////////////////////////////////////////////////////////////////////////////////
     //                                Add Bot Socket Data
     // ////////////////////////////////////////////////////////////////////////////////////////
     case actionTypes.ADD_BOT_SOCKET_DATA:
       return {
         ...state,
-        telegramBotData: state.telegramBotData ? [...state.telegramBotData, action.payload] : [action.payload],
-        isLoading: false,      };
+        telegramBotData: state.telegramBotData
+          ? [...state.telegramBotData, action.payload]
+          : [action.payload],
+        isLoading: false,
+      };
 
     default:
       return state;

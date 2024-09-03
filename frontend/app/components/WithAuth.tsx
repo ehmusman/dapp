@@ -1,6 +1,4 @@
-import { useContext, useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
-import axios from "axios";
+import { useContext, useEffect } from "react";
 import UserContext from "../context/user/context";
 
 const WithAuth = (WrappedComponent: React.ComponentType) => {

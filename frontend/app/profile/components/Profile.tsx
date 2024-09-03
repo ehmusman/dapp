@@ -1,6 +1,8 @@
 import React from "react";
-import { useProfileState } from "./hooks/useProfileState";
-import { useWalletHandler } from "./hooks/useWalletHandler";
+import { useProfileState } from "../hooks/useProfileState";
+import { useWalletHandler } from "../hooks/useWalletHandler";
+import Label from "../../components/Label";
+import Button from "../../components/Button";
 
 const Profile = () => {
   const { email, username, telegramBotData } = useProfileState();
@@ -12,49 +14,43 @@ const Profile = () => {
         {/* Profile Section */}
         <aside className="w-full md:w-1/3 p-5">
           <div className="mt-10">
-            <label
-              htmlFor="email"
+            <Label
               className="block text-xl font-semibold text-secondary"
-            >
-              Email:
-            </label>
+              label="Email"
+            />
             <span className="bg-transparent text-secondary text-xl font-sans mt-2">
               {" "}
               {email}
             </span>
           </div>
           <div className="mt-10">
-            <label
-              htmlFor="email"
+            <Label
               className="block text-xl font-semibold text-secondary"
-            >
-              Username:
-            </label>
+              label="Username"
+            />
             <span className="bg-transparent text-secondary text-xl font-sans mt-2">
               {" "}
               {username}
             </span>
           </div>
           {state?.address ? (
-            <button
-              disabled={state?.isConnecting}
+            <Button
+              className="px-5 py-2 bg-primary text-white font-semibold font-sans rounded-lg text-xl w-full"
+              isLoading={state?.isConnecting}
+              loadingClassName="bg-opacity-50"
               onClick={disconnectWallet}
-              className={` ${
-                state?.isConnecting ? "bg-opacity-50" : ""
-              } px-5 py-2 bg-primary text-white font-semibold font-sans rounded-lg text-xl w-full`}
-            >
-              Disconnect Wallet
-            </button>
+              title="Disconnect Wallet"
+              type="button"
+            />
           ) : (
-            <button
-              disabled={state?.isConnecting}
+            <Button
+              className="px-5 py-2 bg-primary text-white font-semibold font-sans rounded-lg text-xl w-full"
+              isLoading={state?.isConnecting}
+              loadingClassName="bg-opacity-50"
               onClick={connectMetaMaskWalletHandler}
-              className={` ${
-                state?.isConnecting ? "bg-opacity-50" : ""
-              } px-5 py-2 bg-primary text-white font-semibold font-sans rounded-lg text-xl w-full`}
-            >
-              Connect Wallet
-            </button>
+              title="Connect Wallet"
+              type="button"
+            />
           )}
           {state?.address ? (
             <table className="border-2 border-secondary border-collapse my-5 font-sans text-lg w-full">
@@ -96,4 +92,4 @@ const Profile = () => {
   );
 };
 
-export default  Profile;
+export default Profile;

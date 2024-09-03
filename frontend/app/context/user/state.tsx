@@ -55,7 +55,7 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
       console.log(err);
       const errors = err as AxiosError<ErrorI>;
       const errResponse = errors.response?.data!;
-      const msg = errResponse.message;
+      const msg = errResponse.message || "Something went wrong";
       toast.error(msg);
       dispatch({ type: actionTypes.SIGNUP_USER_ERROR, payload: errResponse });
     }
@@ -85,7 +85,7 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
     } catch (err) {
       const errors = err as AxiosError<ErrorI>;
       const errResponse = errors.response?.data!;
-      const msg = errResponse.message;
+      const msg = errResponse.message || "Something went wrong";
       toast.error(msg);
       dispatch({ type: actionTypes.LOGIN_USER_ERROR, payload: errResponse });
     }
@@ -108,13 +108,13 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
     } catch (err) {
       const errors = err as AxiosError<ErrorI>;
       const errResponse = errors.response?.data!;
-      const msg = errResponse.message;
+      const msg = errResponse.message || "Something went wrong";
       toast.error(msg);
       dispatch({
         type: actionTypes.GET_USER_PROFILE_ERROR,
         payload: errResponse,
       });
-      router.push("/login")
+      router.push("/login");
     }
   };
 
@@ -131,7 +131,6 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
     router.push("/");
   };
 
-
   /**
    *
    * /////////////////////////////////////////////////////////////////////////////////////////////
@@ -139,7 +138,7 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
    * /////////////////////////////////////////////////////////////////////////////////////////////
    *
    */
-  const socketUpdateBotData = ({data}: {data: TelegramBotData}) => {
+  const socketUpdateBotData = ({ data }: { data: TelegramBotData }) => {
     dispatch({ type: actionTypes.ADD_BOT_SOCKET_DATA, payload: data });
   };
 
@@ -151,7 +150,7 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
         loginUser,
         getUserProfile,
         logout,
-        socketUpdateBotData
+        socketUpdateBotData,
       }}
     >
       {children}

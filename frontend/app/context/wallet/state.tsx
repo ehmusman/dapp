@@ -2,7 +2,7 @@
 import React, { useReducer, ReactNode } from "react";
 import WalletContext from "./context";
 import { reducer } from "./reducer";
-import {  WalletStateI } from "./types";
+import { WalletStateI } from "./types";
 
 interface WalletProviderProps {
   children: ReactNode;
