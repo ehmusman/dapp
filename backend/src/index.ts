@@ -5,7 +5,6 @@ import authRoutes from "./routes/authRoutes";
 import dataRoutes from "./routes/dataRoutes";
 import profileRoutes from "./routes/profileRoutes";
 import errorHandler from "./middlewares/errorsMiddleware";
-import cookieParser from "cookie-parser";
 import { Server } from "socket.io";
 import cors, { CorsOptions } from "cors";
 import http from "http";
@@ -34,7 +33,6 @@ app.use(cors());
 // app.use(cors(corsOptions));
 app.use(express.json());
 
-app.use(cookieParser());
 
 // Optional: Automatically run migrations before starting the server
 const runMigrations = async () => {
