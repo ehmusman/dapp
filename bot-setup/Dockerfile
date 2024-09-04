@@ -1,5 +1,5 @@
 # Base node image
-FROM node:18-alpine
+FROM node:18-alpine as build
 
 # Set the working directory inside the container
 WORKDIR /app
@@ -13,5 +13,16 @@ RUN npm install
 # Copy the rest of the application code
 COPY . .
 
-# Command for development
-CMD ["npm", "run", "start"]
+# build
+RUN npm run build
+
+FROM node:18-alpine
+WORKDIR /app
+# copy from build image
+COPY --from=build /app/package.json ./package.json
+COPY --from=build /app/dist ./dist
+
+RUN npm install --production
+
+EXPOSE 3000
+CMD ["npm","run", "start"]

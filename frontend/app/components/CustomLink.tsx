@@ -6,9 +6,9 @@ import React from "react";
  * Custom Link Interface
  */
 interface CustomLinkI {
-  text: string;
-  href: string;
-  className: string;
+  text?: string;
+  href?: string;
+  className?: string;
 }
 
 /**

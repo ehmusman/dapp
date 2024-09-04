@@ -17,7 +17,7 @@ import authService from "./services/authService";
 const PORT = process.env.PORT || 3000;
 const isDevelopment = process.env.NODE_ENV !== "production";
 
-const app = express();
+export const app = express();
 const server = http.createServer(app);
 
 const whitelist: string[] = ["http://localhost:3000"];
@@ -85,7 +85,7 @@ const startServer = async () => {
     });
   } catch (error) {
     console.error("Error starting server:", error);
-    process.exit(1);
+    // process.exit(1);
   }
 };
 

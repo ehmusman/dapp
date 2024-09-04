@@ -1,7 +1,6 @@
 import React from "react";
 import { useProfileState } from "../hooks/useProfileState";
 import { useWalletHandler } from "../hooks/useWalletHandler";
-import Label from "../../components/Label";
 import Button from "../../components/Button";
 
 const Profile = () => {
@@ -10,24 +9,22 @@ const Profile = () => {
     useWalletHandler();
   return (
     <section className="container mx-auto my-5">
-      <div className="flex flex-wrap justify-between mt-10">
+      <div className="flex flex-col mt-10">
         {/* Profile Section */}
         <aside className="w-full md:w-1/3 p-5">
           <div className="mt-10">
-            <Label
-              className="block text-xl font-semibold text-secondary"
-              label="Email"
-            />
+            <span className="block text-xl font-semibold text-secondary">
+              Email
+            </span>
             <span className="bg-transparent text-secondary text-xl font-sans mt-2">
               {" "}
               {email}
             </span>
           </div>
           <div className="mt-10">
-            <Label
-              className="block text-xl font-semibold text-secondary"
-              label="Username"
-            />
+            <span className="block text-xl font-semibold text-secondary">
+            Username
+            </span>
             <span className="bg-transparent text-secondary text-xl font-sans mt-2">
               {" "}
               {username}

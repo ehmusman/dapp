@@ -9,6 +9,9 @@ export const useProfileState = () => {
     context?.state!;
 
   useEffect(() => {
+    context?.getUserProfile();
+  }, []);
+  useEffect(() => {
     /**
      * Creating Secure Socket Instance for listening Telegram hook data
      */
@@ -40,7 +43,7 @@ export const useProfileState = () => {
     /**
      * Dependency Array
      */
-  }, [context, username]);
+  }, [username]);
   return {
     isLoading,
     error,

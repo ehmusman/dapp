@@ -1,7 +1,6 @@
 "use client";
 import { useLoginState } from "../hooks/useLoginState";
-import Label from "@/app/components/Label";
-import InputWithErrorHandeling from "@/app/components/InputWithErrorHandeling";
+import Input from "@/app/components/Input";
 import Button from "@/app/components/Button";
 import CustomLink from "@/app/components/CustomLink";
 export default function Login() {
@@ -14,29 +13,25 @@ export default function Login() {
         </h2>
         <form onSubmit={onSubmit}>
           <div className="mb-4">
-            <Label
-              label="Email"
-              className="block text-gray-700 font-semibold mb-2"
-            />
-            <InputWithErrorHandeling
+            <Input
               inputType="text"
               errorMessage={errors.email?.message || ""}
               inputName="email"
               placeholder="Email"
               register={register}
+              label="Email"
+              labelClass="block text-gray-700 font-semibold mb-2"
             />
           </div>
           <div className="mb-6">
-            <Label
-              label="Password"
-              className="block text-gray-700 font-semibold mb-2"
-            />
-            <InputWithErrorHandeling
+            <Input
               inputType="password"
               errorMessage={errors.password?.message || ""}
               inputName="password"
               placeholder="Password"
               register={register}
+              label="Password"
+              labelClass="block text-gray-700 font-semibold mb-2"
             />
           </div>
           <Button
@@ -49,7 +44,7 @@ export default function Login() {
         </form>
         <div className="mt-4 text-center">
           <p className="text-gray-700">
-            Don't have an account?{" "}
+            Don&apost have an account?{" "}
             <CustomLink
               href="signup"
               text="Sign up"

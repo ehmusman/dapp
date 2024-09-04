@@ -2,35 +2,37 @@ import React from "react";
 import { UseFormRegister, FieldValues, Path } from "react-hook-form";
 
 /**
- * Custom Input Handeline Interface
+ * Custom Input Handling Interface
  */
-interface InputWithErrorHandelingI<T extends FieldValues> {
+interface InputI<T extends FieldValues> {
   placeholder: string;
   errorMessage: string;
   inputName: Path<T>;
   inputType: "text" | "password" | "email";
+  labelClass: string;
+  label: string;
   register: UseFormRegister<T>;
 }
 
 /**
- *
- * @param param0 string
- * @param param1 string
- * @param param2 string
- * @param param3 string
- * @param param4 {}
- * @returns
+ * Input Component
  */
-const InputWithErrorHandeling = <T extends FieldValues>({
-  placeholder = "Email",
-  errorMessage = "",
+const Input = <T extends FieldValues>({
+  placeholder,
+  errorMessage,
   inputName,
-  inputType = "email",
+  inputType,
+  labelClass,
+  label,
   register,
-}: InputWithErrorHandelingI<T>) => {
+}: InputI<T>) => {
   return (
     <>
+      <label htmlFor={inputName} className={labelClass}>
+        {label}
+      </label>
       <input
+        id={inputName}
         type={inputType}
         placeholder={placeholder}
         {...register(inputName, { required: true })}
@@ -45,4 +47,4 @@ const InputWithErrorHandeling = <T extends FieldValues>({
   );
 };
 
-export default InputWithErrorHandeling;
+export default Input;

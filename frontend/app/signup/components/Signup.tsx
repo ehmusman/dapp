@@ -1,12 +1,10 @@
 "use client";
-
-import Label from "@/app/components/Label";
 import { useSignupState } from "../hooks/useSignupState";
-import InputWithErrorHandeling from "@/app/components/InputWithErrorHandeling";
+import Input from "@/app/components/Input";
 import Button from "@/app/components/Button";
 
 export default function Signup() {
-  const { isLoading, error, errors, register, onSubmit } = useSignupState();
+  const { isLoading, errors, register, onSubmit } = useSignupState();
   return (
     <div className="min-h-screen flex items-center justify-center bg-primary">
       <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
@@ -15,44 +13,38 @@ export default function Signup() {
         </h1>
         <form onSubmit={onSubmit} className="flex flex-col">
           <div className="mb-4">
-            <Label
-              label="Username"
-              className="block font-sans font-semibold text-lg text-primary mb-2"
-            />
-            <InputWithErrorHandeling
+            <Input
               errorMessage={errors.username?.message || ""}
               inputName="username"
               placeholder="username..."
               register={register}
               inputType="text"
+              label="Username"
+              labelClass="block font-sans font-semibold text-lg text-primary mb-2"
             />
           </div>
 
           <div className="mb-4">
-            <Label
-              label="Email"
-              className="block font-sans font-semibold text-lg text-primary mb-2"
-            />
-            <InputWithErrorHandeling
+            <Input
               errorMessage={errors.username?.message || ""}
               inputName="email"
               placeholder="email@example.com"
               register={register}
               inputType="email"
+              label="Email"
+              labelClass="block font-sans font-semibold text-lg text-primary mb-2"
             />
           </div>
 
           <div className="mb-6">
-            <Label
-              label="Password"
-              className="block font-sans font-semibold text-lg text-primary mb-2"
-            />
-            <InputWithErrorHandeling
+            <Input
               errorMessage={errors.password?.message || ""}
               inputName="password"
               placeholder="password"
               register={register}
               inputType="password"
+              label="Password"
+              labelClass="block font-sans font-semibold text-lg text-primary mb-2"
             />
           </div>
 

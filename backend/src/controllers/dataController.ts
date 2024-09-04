@@ -14,7 +14,6 @@ export const saveData = asyncHandler(async (req: Request, res: Response) => {
     },
   } = req.body;
 
-  console.log(req.body)
   await DataService.saveData(update_id, message_id, date, text, username, first_name);
   const io = req.app.get("io")
   emitSocketEvent(io, username, {update_id, message_id, date, text, username, first_name})

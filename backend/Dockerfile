@@ -1,5 +1,5 @@
 # Base node image
-FROM node:18-alpine
+FROM node:18-alpine as build
 
 # Set the working directory inside the container
 WORKDIR /app
@@ -9,13 +9,20 @@ COPY package*.json ./
 
 # Install dependencies and nodemon globally
 RUN npm install
-RUN npm install -g nodemon
 
 # Copy the rest of the application code
 COPY . .
 
-# Expose the application port
-EXPOSE 3000
+# build
+RUN npm run build
 
-# Command for development
-CMD ["npm", "run", "dev"]
+FROM node:18-alpine
+WORKDIR /app
+# copy from build image
+COPY --from=build /app/package.json ./package.json
+COPY --from=build /app/dist ./dist
+
+RUN npm install --production
+
+EXPOSE 3000
+CMD ["npm","run", "start"]

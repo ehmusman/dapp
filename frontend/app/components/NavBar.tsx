@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { useContext, useEffect } from "react";
 import UserContext from "../context/user/context";
 import CustomLink from "./CustomLink";

@@ -1,13 +1,12 @@
-import React from "react";
-
+import React from 'react'
 /**
  * Button Component Interface
  */
 interface ButtonI {
   isLoading?: boolean;
-  type: "submit" | "reset" | "button" | undefined;
-  title: string;
-  className: string;
+  type?: "submit" | "reset" | "button" | undefined;
+  title?: string;
+  className?: string;
   loadingClassName?: string;
   onClick?: () => void;
 }

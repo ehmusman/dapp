@@ -2,7 +2,6 @@ import { Request, Response } from "express";
 import { validationResult } from "express-validator";
 import AuthService from "../services/authService";
 import { asyncHandler } from "../utils/asyncHandler";
-import User from "../models/User";
 import { HttpError } from "../utils/HttpError";
 import { comparePassword, generateToken, hashPassword } from "../utils/tokenHandler";
 
@@ -40,7 +39,7 @@ export const login = asyncHandler(async (req: Request, res: Response) => {
     throw new HttpError("Invalid Credentials", 400);
   }
   const token = generateToken(user.id);
-  res.json({
+  res.status(200).json({
     success: true,
     message: "Login successful",
     token,
@@ -54,24 +53,3 @@ export const login = asyncHandler(async (req: Request, res: Response) => {
     },
   });
 });
-
-export const session = asyncHandler(async (req: Request, res: Response) => {
-  const userId = (req as any).user.userId;
-  const user = await AuthService.findByPk(userId);
-  if (!user) {
-    throw new HttpError("User not found", 400);
-  }
-  res.json({
-    success: true,
-    message: "Fetched user data successfully",
-    data: {
-      user: {
-        id: user.id,
-        email: user.email,
-        username: user.username,
-        created_at: user.created_at,
-      },
-    }
-  });
-});
-
